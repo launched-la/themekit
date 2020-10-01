@@ -80,7 +80,7 @@ func deploy(ctx *cmdutil.Ctx) error {
 		deployGroup.Add(1)
 		go func(path string, op file.Op) {
 			defer deployGroup.Done()
-			perform(ctx, path, op, "")
+			go perform(ctx, path, op, "")
 		}(path, op)
 
 		switch op {
@@ -90,6 +90,9 @@ func deploy(ctx *cmdutil.Ctx) error {
 			skipCount++
 		case file.Remove:
 			removeCount++
+		}
+		if (((updateCount + skipCount + removeCount) % 5) === 0) {
+			deployGroup.Wait()
 		}
 	}
 
