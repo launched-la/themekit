@@ -91,7 +91,7 @@ func deploy(ctx *cmdutil.Ctx) error {
 		case file.Remove:
 			removeCount++
 		}
-		if (((updateCount + skipCount + removeCount) % 5) === 0) {
+		if (((updateCount + skipCount + removeCount) % 5) < 1) {
 			deployGroup.Wait()
 		}
 	}
