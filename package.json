@@ -60,8 +60,6 @@
   "scripts": {
     "lint": "eslint --max-warnings 0 -c .eslintrc.json src/ test/",
     "lint-allow-warning": "eslint -c .eslintrc.json src/ test/",
-    "postinstall": "node ./lib/cli.js install",
-    "postversion": "node ./lib/cli.js install",
     "test": "node test/themekit-version"
   },
   "version": "0.6.12"
